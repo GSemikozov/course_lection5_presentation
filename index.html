@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lesson 5. HTML/CSS Course</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+            --color-key: #b20600;
+        }
+    </style>
+</head>
+<body class="shower list grid">
+    <header class="caption">
+        <h1>Лекция 5</h1>
+    </header>
+
+    <section class="slide">
+        <h2 class="shout">Лекция 5</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Формы</h2>
+        <div class="content">
+            <img class="image" height="400px" src="./pictures/google-auth.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Формы</h2>
+        <div class="content">
+            <img class="image" height="400px" src="./pictures/ozon-checkout.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Формы</h2>
+        <div class="content">
+            <img class="image" height="400px" src="./pictures/kinopoisk.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Формы</h2>
+        <div class="content">
+            <img class="image" height="100px" src="./pictures/subscribe.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Из чего состоит форма?</h2>
+        <div class="content">
+            <ul>
+                <li>Заголовок</li>
+                <li>Секции</li>
+                <li>Поля и элементы управления</li>
+                <li>Подписи</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">form</h2>
+    </section>
+
+    <section class="slide">
+        <h2>form</h2>
+        <div class="content">
+            <p>Управляющие формой атрибуты:</p>
+            <ol>
+                <li><mark>action</mark></li>
+                <li><mark>method</mark></li>
+                <li><mark>enctype</mark></li>
+                <li><mark>novalidate</mark> - о нем чуть позже</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>form action</h2>
+        <div class="content">
+            <p><mark>action</mark> - обязательный, отвечает за url, на который послать информацию из формы</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>form method</h2>
+        <div class="content">
+            <p><mark>method</mark> - метод запроса</p>
+            <p>Доступны только 2: "get" и "post"</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>form enctype</h2>
+        <div class="content">
+            <p><mark>enctype</mark> - способ кодирования информации в форме</p>
+            <ol>
+                <li><mark>application/x-www-form-urlencoded</mark> - по умолчанию</li>
+                <li><mark>multipart/form-data</mark> - для файлов только такой</li>
+                <li><mark>text/plain</mark></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>GET</h2>
+        <div class="content">
+<pre><code class="lang-http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/page?param1=value1&amp;param2=value2</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: example.com
+<span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (Linux; Android 9; Pixel 2 XL Build/PPP3.180510.008) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Mobile Safari/537.36
+</code></pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>POST + multipart/form-data</h2>
+        <div class="content">
+<pre class="small"><code class="lang-http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/page?param1=value1&amp;param2=value2</span> HTTP/1.1
+<span class="hljs-attribute">Host</span>: example.com
+<span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (Linux; Android 9; Pixel 2 XL Build/PPP3.180510.008) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Mobile Safari/537.36
+<span class="hljs-attribute">Content-Type</span>: multipart/form-data; boundary=RaNdOmDeLiMiTeR
+<span class="hljs-attribute">Content-Length</span>: 288
+
+<span class="applescript"><span class="hljs-comment">--RaNdOmDeLiMiTeR</span>
+Content-Disposition: form-data; <span class="hljs-built_in">name</span>=<span class="hljs-string">"name"</span>
+
+Виктор
+<span class="hljs-comment">--RaNdOmDeLiMiTeR</span>
+Content-Disposition: form-data; <span class="hljs-built_in">name</span>=<span class="hljs-string">"file"</span>; filename=<span class="hljs-string">"sample.txt"</span>
+Content-Type: <span class="hljs-built_in">text</span>/plain
+
+Content <span class="hljs-built_in">file</span>
+<span class="hljs-comment">--RaNdOmDeLiMiTeR--</span></span>
+</code></pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Ответ сервера</h2>
+        <div class="content">
+<pre><code class="lang-http">HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-Type</span>: text/html; charset=UTF-8
+<span class="hljs-attribute">Content-Length</span>: 98
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>An Example Page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello World<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span>
+</code></pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">Поля ввода</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Поля ввода</h2>
+        <div class="content">
+            <img class="image" height="450px" src="./pictures/controls.png">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Поля ввода</h2>
+        <div class="content">
+            <ol>
+                <li><mark>input</mark></li>
+                <li><mark>textarea</mark></li>
+                <li><mark>select</mark></li>
+                <li><mark>button</mark></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>input</h2>
+        <div class="content">
+            <ol class="small columns two">
+                <li><mark>text</mark></li>
+                <li><mark>number</mark></li>
+                <li><mark>password</mark></li>
+                <li><mark>hidden</mark></li>
+                <li><mark>button</mark></li>
+                <li><mark>submit</mark></li>
+                <li><mark>reset</mark></li>
+                <li><mark>radio</mark></li>
+                <li><mark>checkbox</mark></li>
+                <li><mark>file</mark></li>
+                <li><mark>date</mark></li>
+                <li><mark>color</mark></li>
+                <li>...</li>
+            </ol>
+            <a href="https://codepen.io/Dmitryks/pen/KKNwqxG" target="_blank">demo</a>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>input type="button | submit | reset" vs button</h2>
+        <div class="content next">
+            <p><mark>button</mark> лучше. Умеет все то же самое, что и input, но внутри может принимать любой контент.</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Textarea</h2>
+        <div class="content">
+            <p>Многострочное поле ввода</p>
+            <ul>
+                <li>cols, rows</li>
+                <li>resize: none | vertical | horizontal</li>
+            </ul>
+            <a href="https://codepen.io/Dmitryks/pen/JjborPp" target="_blank">demo</a>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Select</h2>
+        <div class="content">
+            <p>Выбор одного варианта из нескольких предлагаемых</p>
+            <a href="https://codepen.io/Dmitryks/pen/jOVEGEW" target="_blank">demo</a>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">label</h2>
+    </section>
+
+    <section class="slide">
+        <h2>label</h2>
+        <div class="content">
+            <p>Тег &lt;label> устанавливает связь между определенной меткой, и элементом формы.</p>
+            <ul>
+                <li>Поле получит фокус, когда человек тыкнет на элемент внутри label</li>
+                <li>Текстовый контент в label играет роль подписи к input, к которому он привязан</li>
+            </ul>
+            <a href="https://codepen.io/Dmitryks/pen/XWNJzLW" target="_blank">demo</a>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">fieldset</h2>
+    </section>
+
+    <section class="slide">
+        <h2>fieldset</h2>
+        <div class="content">
+            <p>Объединяет набор полей в одну группу</p>
+            <a href="https://codepen.io/Dmitryks/pen/ExNaogK" target="_blank">demo</a>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">UX</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Accessibility форм</h2>
+        <div class="content">
+            <p>Нужно, чтобы:</p>
+            <ul>
+                <li>На мобильном устройстве были нативные (или хорошо подстроенные свои) элементы управления интерфейсом</li>
+                <li>Контролы интерфейса можно было выбрать с клавиатуры (табуляция), пройти по ним и активировать их пробелом и нажатием клавиши enter</li>
+                <li>Ко всем input был соответствующий label или хотя бы title</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Как стилизовать элементы формы?</h2>
+        <div class="content">
+            <p>Свести сложные элементы к как можно более нативным.</p>
+            <ul>
+                <li>desktop - кастомизируем, как хотим</li>
+                <li>touch - дать выбрать через нативные контролы</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Валидация</h2>
+        <div class="content">
+            <p>Дизайнеры не любят нативную валидацию. И есть, за что.</p>
+            <img src="./pictures/native-validation.png" height="300px">
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Валидация</h2>
+        <div class="content">
+            <p>Нужно помогать пользователям изначально вводить правильно!</p>
+
+            <ol>
+                <li><b>Показать правильный контрол (!)</b></li>
+                <li>Провалидировать поля со стороны JS через <a href="https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation" target="_blank">Constraint Validation API</a></li>
+                <li>Если ошибки ввода есть, то показать сразу как поле потеряло фокус (onblur)</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>form novalidate</h2>
+        <div class="content">
+            <p><mark>novalidate</mark> - атрибут формы, который позволяет отправлять форму, даже если поля в ней заполнены неправильно.</p>
+            <p><b>При том все селекторы псевдоклассов, JS API работают!</b></p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">Как показать правильный контрол?</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Специальные типы input</h2>
+        <div class="content">
+            <p>HTML5 принес множетсво новых типов input:</p>
+            <small><ul class="columns two">
+                <li><mark>url</mark></li>
+                <li><mark>tel</mark></li>
+                <li><mark>email</mark></li>
+                <li><mark>search</mark></li>
+                <li><mark>number</mark> - на iOS использовать совместно с pattern="\d*"</li>
+                <li><mark>range</mark></li>
+                <li><mark>datetime-local</mark></li>
+                <li><mark>date</mark></li>
+                <li><mark>time</mark></li>
+                <li><mark>week</mark></li>
+                <li><mark>month</mark></li>
+                <li><mark>color</mark></li>
+            </ul></small>
+            <a href="https://codepen.io/Dmitryks/pen/WNobmVg" target="_blank">demo</a>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Min, max, step</h2>
+        <div class="content">
+            <p>input type="number"</p>
+            <p>Минимальное, максимальное значения и шаг</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Placeholder</h2>
+        <div class="content">
+            <p>Замещающий текст</p>
+            <p>В placeholder обычно располагают формат или пример.</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>pattern</h2>
+        <div class="content">
+            <p>Регулярное выражение, которое описывает формат в input.</p>
+            <p>Очень похоже на js-регулярки</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>required</h2>
+        <div class="content">
+            <p>Означает, что поле должно быть обязательно заполнено.</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>maxlength, minlength</h2>
+        <div class="content">
+            <p>Соответственно минимальная и максимальная длина вводимых в поле данных.</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Autocomplete</h2>
+        <div class="content">
+            <p>Автодополнение</p>
+            <p>on / off - по умолчанию "on"</p>
+            <div class="next">
+                <p>список был расширен через <mark class="secondary">autofill detail tokens</mark></p>
+                <p>
+                    прямое указание наименования поля из
+                    <a href="https://html.spec.whatwg.org/multipage/forms.html#inappropriate-for-the-control">spec</a>
+                    или сочетание 2-ух параметров (тоже из спецификации)
+                </p>
+                <a href="https://codepen.io/Dmitryks/pen/ExNaogK">demo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">Практика</h2>
+    </section>
+
+    <section class="slide">
+        <h2 class="shout">ДЗ</h2>
+    </section>
+
+    <section class="slide">
+        <h2>ДЗ</h2>
+        <div class="content">
+            <ol>
+                <li>Поле ввода</li>
+                <li>Чекбокс</li>
+                <li>Радио-кнопка</li>
+                <li>Тогглер</li>
+                <li>Табы через radio *</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="slide">
+        <h2>Почитать</h2>
+        <div class="content">
+            <ul>
+                <li><a href="https://uxdesign.cc/form-best-practices-8e560e9f8bd0">UX form best practices</a></li>
+                <li><a href="https://github.com/offsetChris/aria-form-validation">Доступность в формах через aria</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="./shower.js"></script>
+</body>
+</html>
